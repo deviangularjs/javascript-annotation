@@ -1,2 +1,2 @@
 cd build;
-java com.dahmian.javascript.annotation.Engine ../src/com/dahmian/javascript/annotation/test.js
+java com.dahmian.javascript.annotation.Engine ../test.js
