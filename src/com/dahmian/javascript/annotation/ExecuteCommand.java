@@ -8,13 +8,11 @@ public class ExecuteCommand extends Command
 		this.setCommand("execute");
 	}
 
-	public void execute(String currentLine)
+	public void execute(ScriptEngine engine, String currentLine)
 	{
-		ScriptEngineManager mgr = new ScriptEngineManager();
-		ScriptEngine jsEngine = mgr.getEngineByName("JavaScript");
 		try
 		{
-			jsEngine.eval(currentLine);
+			engine.eval(currentLine);
 		}
 		catch (ScriptException ex)
 		{

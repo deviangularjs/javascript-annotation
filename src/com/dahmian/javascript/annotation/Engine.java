@@ -2,20 +2,35 @@ package com.dahmian.javascript.annotation;
 
 import java.io.*;
 import java.util.regex.*;
+import javax.script.*;
 
 public class Engine
 {
 	protected Command[] commandList = {new ExecuteCommand()};
 	protected String annotationToken = "@jsa";
 	private String currentLine = "";
+	private ScriptEngineManager scriptEngineManager;
+	private ScriptEngine javaScriptEngine;
 
 	public static void main(String[] args) throws Exception
 	{
+
 		Engine engine = new Engine();
 		for (String currentArg : args)
 		{
 			engine.parseFile(currentArg);
 		}
+	}
+
+	public Engine()
+	{
+		scriptEngineManager = new ScriptEngineManager();
+		javaScriptEngine = scriptEngineManager.getEngineByName("JavaScript");
+	}
+
+	public ScriptEngine getEngine()
+	{
+		return javaScriptEngine;
 	}
 
 	private void parseFile(String filename) throws Exception 
@@ -30,7 +45,7 @@ public class Engine
 				if (this.containsAnnotationToken() && currentLine.contains(command.getCommand()))
 				{
 					String args = this.parseArguments(command.getCommand());
-					command.execute(args);
+					command.execute(this.javaScriptEngine, args);
 				}
 			}
 		}

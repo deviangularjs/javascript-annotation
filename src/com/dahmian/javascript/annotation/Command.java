@@ -1,6 +1,7 @@
 package com.dahmian.javascript.annotation;
 
 import java.util.regex.Pattern;
+import javax.script.*;
 
 public abstract class Command 
 {
@@ -16,7 +17,7 @@ public abstract class Command
 		this.commandString = command;
 	}
 
-	public abstract void execute(String currentLine);
+	public abstract void execute(ScriptEngine engine, String currentLine);
 
 	public String[] parseArguments(String currentLine)
 	{
