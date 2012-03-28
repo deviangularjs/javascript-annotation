@@ -18,6 +18,7 @@ public class Engine
 		Engine engine = new Engine();
 		for (String currentArg : args)
 		{
+			engine.loadFile(currentArg);
 			engine.parseFile(currentArg);
 		}
 	}
@@ -33,6 +34,11 @@ public class Engine
 		return javaScriptEngine;
 	}
 
+	public void loadFile(String filename) throws Exception
+	{
+		javaScriptEngine.eval(new FileReader(filename));
+	}
+
 	private void parseFile(String filename) throws Exception 
 	{
 		BufferedReader in;
@@ -45,7 +51,7 @@ public class Engine
 				if (this.containsAnnotationToken() && currentLine.contains(command.getCommand()))
 				{
 					String args = this.parseArguments(command.getCommand());
-					command.execute(this.javaScriptEngine, args);
+					command.execute(this.getEngine(), args);
 				}
 			}
 		}
