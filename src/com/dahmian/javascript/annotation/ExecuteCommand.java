@@ -8,11 +8,11 @@ public class ExecuteCommand extends Command
 		this.setCommand("execute");
 	}
 
-	public void execute(ScriptEngine engine, String currentLine)
+	public void execute(ScriptEngine engine, String annotationCommands)
 	{
 		try
 		{
-			engine.eval(currentLine);
+			engine.eval(annotationCommands);
 		}
 		catch (ScriptException ex)
 		{

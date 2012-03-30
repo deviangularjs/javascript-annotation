@@ -34,9 +34,21 @@ public class Engine
 		return javaScriptEngine;
 	}
 
-	public void loadFile(String filename) throws Exception
+	public void loadFile(String filename)
 	{
-		javaScriptEngine.eval(new FileReader(filename));
+		try
+		{
+			javaScriptEngine.eval(new FileReader(filename));
+		}
+		catch (ScriptException exception)
+		{
+			System.out.println("JavaScript Error");
+			exception.printStackTrace();
+		}
+		catch (FileNotFoundException exception)
+		{
+			System.out.println("file not found!");
+		}
 	}
 
 	private void parseFile(String filename) throws Exception 
