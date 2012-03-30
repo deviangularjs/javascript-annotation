@@ -17,13 +17,13 @@ public abstract class Command
 		this.commandString = command;
 	}
 
-	public abstract void execute(ScriptEngine engine, String currentLine);
+	public abstract void execute(ScriptEngine engine, String annotationCommands);
 
-	public String[] parseArguments(String currentLine)
+	public String[] parseArguments(String annotationCommands)
 	{
 		String regularExpression = "\\w";
 		Pattern pattern = Pattern.compile(regularExpression);
-		String[] arguments = pattern.split(currentLine);
+		String[] arguments = pattern.split(annotationCommands);
 		return arguments;
 	}
 }
