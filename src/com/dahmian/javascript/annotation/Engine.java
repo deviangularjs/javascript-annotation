@@ -38,6 +38,7 @@ public class Engine
 	{
 		try
 		{
+			javaScriptEngine.put(ScriptEngine.FILENAME, filename.toString());
 			javaScriptEngine.eval(new FileReader(filename));
 		}
 		catch (ScriptException exception)
