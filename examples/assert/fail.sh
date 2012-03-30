@@ -1,2 +1,2 @@
 cd ../../build;
-java com.dahmian.javascript.annotation.Engine ../examples/assert/assertSuite.js ../examples/assert/assertTestFail.js
+java com.dahmian.javascript.annotation.Main ../examples/assert/assertSuite.js ../examples/assert/assertTestFail.js

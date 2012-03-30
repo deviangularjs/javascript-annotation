@@ -12,17 +12,6 @@ public class Engine
 	private ScriptEngineManager scriptEngineManager;
 	private ScriptEngine javaScriptEngine;
 
-	public static void main(String[] args) 
-	{
-
-		Engine engine = new Engine();
-		for (String currentArg : args)
-		{
-			engine.loadFile(currentArg);
-			engine.parseFile(currentArg);
-		}
-	}
-
 	public Engine()
 	{
 		scriptEngineManager = new ScriptEngineManager();
@@ -52,7 +41,7 @@ public class Engine
 		}
 	}
 
-	private void parseFile(String filename)
+	public void parseFile(String filename)
 	{
 		BufferedReader in;
 		try
