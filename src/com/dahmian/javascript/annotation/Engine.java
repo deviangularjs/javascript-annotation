@@ -16,6 +16,7 @@ public class Engine
 	{
 		scriptEngineManager = new ScriptEngineManager();
 		javaScriptEngine = scriptEngineManager.getEngineByName("JavaScript");
+		this.loadFile("scripts/jsa.js");
 	}
 
 	public ScriptEngine getEngine()
