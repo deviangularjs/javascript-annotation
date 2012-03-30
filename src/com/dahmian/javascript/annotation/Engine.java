@@ -12,7 +12,7 @@ public class Engine
 	private ScriptEngineManager scriptEngineManager;
 	private ScriptEngine javaScriptEngine;
 
-	public static void main(String[] args) throws Exception
+	public static void main(String[] args) 
 	{
 
 		Engine engine = new Engine();
@@ -51,24 +51,37 @@ public class Engine
 		}
 	}
 
-	private void parseFile(String filename) throws Exception 
+	private void parseFile(String filename)
 	{
 		BufferedReader in;
-		in = new BufferedReader(new FileReader(filename));
-
-		while ((currentLine = in.readLine()) != null)
+		try
 		{
-			for (Command command : commandList)
+			in = new BufferedReader(new FileReader(filename));
+
+			while ((currentLine = in.readLine()) != null)
 			{
-				if (this.containsAnnotationToken() && currentLine.contains(command.getCommand()))
+				for (Command command : commandList)
 				{
-					String args = this.parseArguments(command.getCommand());
-					command.execute(this.getEngine(), args);
+					if (this.containsAnnotationToken() && currentLine.contains(command.getCommand()))
+					{
+						String args = this.parseArguments(command.getCommand());
+						command.execute(this.getEngine(), args);
+					}
 				}
 			}
+
+			in.close();
+		}
+		catch (FileNotFoundException exception)
+		{
+			System.out.println("file not found!");
+			
+		}
+		catch (IOException exception)
+		{
+			System.out.println("unable to read file");
 		}
 
-		in.close();
 	}
 
 	private boolean containsAnnotationToken()
