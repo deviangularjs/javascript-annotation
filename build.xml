@@ -12,6 +12,9 @@
 		<javac srcdir="src"
 			destdir="build"
 		/>
+		<copy todir="build/scripts">
+			<fileset dir="scripts"/>
+		</copy>
 	</target>
 
 	<target name="run">
