@@ -1,6 +1,7 @@
 package com.dahmian.javascript.annotation;
 
 import java.io.*;
+import java.util.*;
 import java.util.regex.*;
 import javax.script.*;
 
@@ -44,6 +45,26 @@ public class Engine
 
 	public void parseFile(String filename)
 	{
+		ArrayList<String> lines = getLines(filename);
+		//while ((currentLine = in.readLine()) != null)
+		for(String currentLine : lines)
+		{
+			this.currentLine = currentLine;
+			for (Command command : commandList)
+			{
+				if (this.containsAnnotationToken() && currentLine.contains(command.getCommand()))
+				{
+					String args = this.parseArguments(command.getCommand());
+					command.execute(this.getEngine(), args);
+				}
+			}
+		}
+
+	}
+
+	private ArrayList<String> getLines(String filename)
+	{
+		ArrayList<String> lines = new ArrayList<String>();
 		BufferedReader in;
 		try
 		{
@@ -51,14 +72,7 @@ public class Engine
 
 			while ((currentLine = in.readLine()) != null)
 			{
-				for (Command command : commandList)
-				{
-					if (this.containsAnnotationToken() && currentLine.contains(command.getCommand()))
-					{
-						String args = this.parseArguments(command.getCommand());
-						command.execute(this.getEngine(), args);
-					}
-				}
+				lines.add(currentLine);
 			}
 
 			in.close();
@@ -72,7 +86,7 @@ public class Engine
 		{
 			System.out.println("unable to read file");
 		}
-
+		return lines;
 	}
 
 	private boolean containsAnnotationToken()
