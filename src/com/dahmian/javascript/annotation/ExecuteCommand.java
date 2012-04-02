@@ -5,7 +5,7 @@ public class ExecuteCommand extends Command
 {
 	public ExecuteCommand()
 	{
-		this.setCommand("execute");
+		setCommand("execute");
 	}
 
 	public void execute(ScriptEngine engine, String annotationCommands)

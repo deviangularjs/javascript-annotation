@@ -9,7 +9,7 @@ public abstract class Command
 
 	public String getCommand()
 	{
-		return this.commandString;
+		return commandString;
 	}
 
 	public void setCommand(String command)
