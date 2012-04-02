@@ -18,11 +18,13 @@ public class Engine
 		loadAnnotationJavaScriptFiles();
 	}
 
+	/** @returns JavaScript Engine, allowing other objects to operate in a current JavaScript engine state */
 	public ScriptEngine getEngine()
 	{
 		return javaScriptEngine;
 	}
 
+	/** @param String filename*/
 	public void loadFile(String filename)
 	{
 		try
