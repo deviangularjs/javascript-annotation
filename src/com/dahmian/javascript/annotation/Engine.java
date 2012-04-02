@@ -14,9 +14,8 @@ public class Engine
 
 	public Engine()
 	{
-		scriptEngineManager = new ScriptEngineManager();
-		javaScriptEngine = scriptEngineManager.getEngineByName("JavaScript");
-		loadFile("scripts/jsa.js");
+		createJavaScriptEngine();
+		loadAnnotationJavaScriptFiles();
 	}
 
 	public ScriptEngine getEngine()
@@ -107,5 +106,16 @@ public class Engine
 			args = "FAIL";
 		}
 		return args;
+	}
+
+	private void createJavaScriptEngine()
+	{
+		scriptEngineManager = new ScriptEngineManager();
+		javaScriptEngine = scriptEngineManager.getEngineByName("JavaScript");
+	}
+
+	private void loadAnnotationJavaScriptFiles()
+	{
+		loadFile("scripts/jsa.js");
 	}
 }
