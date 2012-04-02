@@ -16,7 +16,7 @@ public class Engine
 	{
 		scriptEngineManager = new ScriptEngineManager();
 		javaScriptEngine = scriptEngineManager.getEngineByName("JavaScript");
-		this.loadFile("scripts/jsa.js");
+		loadFile("scripts/jsa.js");
 	}
 
 	public ScriptEngine getEngine()
@@ -58,10 +58,10 @@ public class Engine
 			{
 				for (Command command : commandList)
 				{
-					if (this.containsAnnotationToken() && currentLine.contains(command.getCommand()))
+					if (containsAnnotationToken() && currentLine.contains(command.getCommand()))
 					{
-						String args = this.parseArguments(command.getCommand());
-						command.execute(this.getEngine(), args);
+						String args = parseArguments(command.getCommand());
+						command.execute(getEngine(), args);
 					}
 				}
 			}
@@ -82,7 +82,7 @@ public class Engine
 
 	private boolean containsAnnotationToken()
 	{
-		if (currentLine.contains(this.annotationToken))
+		if (currentLine.contains(annotationToken))
 		{
 			return true;
 		}
@@ -95,7 +95,7 @@ public class Engine
 	private String parseArguments(String command)
 	{
 		String args = "";
-		String regularExpression = ".*" + this.annotationToken + "\\s*" + command + "\\s*(.*)";
+		String regularExpression = ".*" + annotationToken + "\\s*" + command + "\\s*(.*)";
 		Pattern pattern = Pattern.compile(regularExpression);
 		Matcher matcher = pattern.matcher(currentLine);
 		if (matcher.matches())
