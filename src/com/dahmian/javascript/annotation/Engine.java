@@ -33,13 +33,18 @@ public class Engine
 		}
 		catch (ScriptException exception)
 		{
-			System.out.println("JavaScript Error");
-			exception.printStackTrace();
+			printScriptError(exception);
 		}
 		catch (FileNotFoundException exception)
 		{
 			System.out.println("file not found!");
 		}
+	}
+
+	static public void printScriptError(ScriptException exception)
+	{
+		System.out.println("JavaScript error: " + exception.getMessage());
+		System.exit(1);
 	}
 
 	public void parseFile(String filename)
