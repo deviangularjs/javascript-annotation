@@ -33,6 +33,7 @@ public class Engine
 		{
 			javaScriptEngine.put(ScriptEngine.FILENAME, filename.toString());
 			javaScriptEngine.eval(new FileReader(filename));
+			parseFile(filename);
 		}
 		catch (ScriptException exception)
 		{
@@ -51,7 +52,7 @@ public class Engine
 		System.exit(1);
 	}
 
-	public void parseFile(String filename)
+	private void parseFile(String filename)
 	{
 		BufferedReader in;
 		try
