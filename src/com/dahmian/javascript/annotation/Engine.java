@@ -12,6 +12,7 @@ public class Engine
 	private ScriptEngineManager scriptEngineManager;
 	private ScriptEngine javaScriptEngine;
 
+	/** Instantiates a JavaScript engine and loads common annotation JavaScript variables into the JavaScript engine environment.*/
 	public Engine()
 	{
 		createJavaScriptEngine();
@@ -24,7 +25,8 @@ public class Engine
 		return javaScriptEngine;
 	}
 
-	/** @param String filename*/
+	/** loads a JavaScript file into the JavaScript engine and executes the script
+	@param filename JavaScript filename represented by a string */
 	public void loadFile(String filename)
 	{
 		try
@@ -42,6 +44,7 @@ public class Engine
 		}
 	}
 
+	/** Accepts a ScriptException and prints a user friendly JavaScript error*/
 	static public void printScriptError(ScriptException exception)
 	{
 		System.out.println("JavaScript error: " + exception.getMessage());
