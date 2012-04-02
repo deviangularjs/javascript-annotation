@@ -8,7 +8,6 @@ public class main
                 for (String currentArg : args)
                 {
                         engine.loadFile(currentArg);
-                        engine.parseFile(currentArg);
                 }	
 	}
 }
