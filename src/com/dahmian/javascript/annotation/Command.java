@@ -5,16 +5,16 @@ import javax.script.*;
 
 public abstract class Command 
 {
-	protected String commandString = "";
+	protected String command = "";
 
 	public String getCommand()
 	{
-		return commandString;
+		return command;
 	}
 
 	public void setCommand(String command)
 	{
-		this.commandString = command;
+		this.command = command;
 	}
 
 	public abstract void execute(ScriptEngine engine, String annotationCommands);
