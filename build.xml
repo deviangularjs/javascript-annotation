@@ -22,4 +22,8 @@
 			<arg value="test.js"/>
 		</java>
 	</target>
+
+	<target name="document">
+		<javadoc packagenames="com.dahmian.javascript.annotation" sourcepath="src" destdir="build/docs/" />
+	</target>
 </project>
