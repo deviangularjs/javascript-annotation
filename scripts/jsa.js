@@ -1,1 +1,2 @@
 jsa = {};
+jsa.assert = {};

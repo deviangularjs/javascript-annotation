@@ -11,6 +11,8 @@ public class Engine
 	private String currentLine = "";
 	private ScriptEngineManager scriptEngineManager;
 	private ScriptEngine javaScriptEngine;
+	private File originalFile;
+	private File parsedFile;
 
 	/** Instantiates a JavaScript engine and loads common annotation JavaScript variables into the JavaScript engine environment.*/
 	public Engine()
@@ -29,11 +31,13 @@ public class Engine
 	@param filename JavaScript filename represented by a string */
 	public void loadFile(String filename)
 	{
+			originalFile = new File(filename);
 		try
 		{
+			parsedFile = File.createTempFile("jsa","tmp");
 			javaScriptEngine.put(ScriptEngine.FILENAME, filename.toString());
 			javaScriptEngine.eval(new FileReader(filename));
-			parseFile(filename);
+			parseFile();
 		}
 		catch (ScriptException exception)
 		{
@@ -42,6 +46,9 @@ public class Engine
 		catch (FileNotFoundException exception)
 		{
 			System.out.println("file not found!");
+		}
+		catch (IOException exception)
+		{
 		}
 	}
 
@@ -52,12 +59,12 @@ public class Engine
 		System.exit(1);
 	}
 
-	private void parseFile(String filename)
+	private void parseFile()
 	{
 		BufferedReader in;
 		try
 		{
-			in = new BufferedReader(new FileReader(filename));
+			in = new BufferedReader(new FileReader(originalFile));
 
 			while ((currentLine = in.readLine()) != null)
 			{
