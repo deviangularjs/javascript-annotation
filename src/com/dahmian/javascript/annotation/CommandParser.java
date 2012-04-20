@@ -6,25 +6,23 @@ import javax.script.*;
 
 public class CommandParser
 {
-	private File originalFile;
 	protected Command[] commandList = {new ExecuteCommand()};
 	protected String annotationToken = "@jsa";
 	private String currentLine = "";
 	private ScriptEngine javaScriptEngine;
 	
-	public CommandParser(File file, ScriptEngine javaScriptEngine)
+	public CommandParser(File scriptFile, ScriptEngine javaScriptEngine)
 	{
-		this.originalFile = file;
 		this.javaScriptEngine = javaScriptEngine;
-		parseFile();
+		parseScript(scriptFile);
 	}
 
-	private void parseFile()
+	private void parseScript(File scriptFile)
 	{
 		BufferedReader in;
 		try
 		{
-			in = new BufferedReader(new FileReader(originalFile));
+			in = new BufferedReader(new FileReader(scriptFile));
 
 			while ((currentLine = in.readLine()) != null)
 			{
@@ -42,8 +40,7 @@ public class CommandParser
 		}
 		catch (FileNotFoundException exception)
 		{
-			System.out.println("file not found!");
-			
+			Engine.printFileNotFound();
 		}
 		catch (IOException exception)
 		{
