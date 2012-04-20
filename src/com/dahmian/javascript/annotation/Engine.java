@@ -6,7 +6,6 @@ import javax.script.*;
 
 public class Engine
 {
-	private ScriptEngineManager scriptEngineManager;
 	private ScriptEngine javaScriptEngine;
 	private File originalFile;
 	private File parsedFile;
@@ -53,7 +52,7 @@ public class Engine
 
 	private void createJavaScriptEngine()
 	{
-		scriptEngineManager = new ScriptEngineManager();
+		ScriptEngineManager scriptEngineManager = new ScriptEngineManager();
 		javaScriptEngine = scriptEngineManager.getEngineByName("JavaScript");
 	}
 
