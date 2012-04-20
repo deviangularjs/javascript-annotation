@@ -1,1 +1,1 @@
-java -cp build com.dahmian.javascript.annotation.main test.js
+java -cp build com.dahmian.javascript.annotation.Runner test.js
