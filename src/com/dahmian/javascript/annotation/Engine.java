@@ -6,9 +6,6 @@ import javax.script.*;
 
 public class Engine
 {
-	protected Command[] commandList = {new ExecuteCommand()};
-	protected String annotationToken = "@jsa";
-	private String currentLine = "";
 	private ScriptEngineManager scriptEngineManager;
 	private ScriptEngine javaScriptEngine;
 	private File originalFile;
@@ -37,7 +34,7 @@ public class Engine
 			parsedFile = File.createTempFile("jsa","tmp");
 			javaScriptEngine.put(ScriptEngine.FILENAME, filename.toString());
 			javaScriptEngine.eval(new FileReader(filename));
-			parseFile();
+			CommandParser commandParser = new CommandParser(originalFile, getEngine());
 		}
 		catch (ScriptException exception)
 		{
@@ -59,67 +56,6 @@ public class Engine
 		System.exit(1);
 	}
 
-	private void parseFile()
-	{
-		BufferedReader in;
-		try
-		{
-			in = new BufferedReader(new FileReader(originalFile));
-
-			while ((currentLine = in.readLine()) != null)
-			{
-				for (Command command : commandList)
-				{
-					if (containsAnnotationToken() && currentLine.contains(command.getCommand()))
-					{
-						String args = parseArguments(command.getCommand());
-						command.execute(getEngine(), args);
-					}
-				}
-			}
-
-			in.close();
-		}
-		catch (FileNotFoundException exception)
-		{
-			System.out.println("file not found!");
-			
-		}
-		catch (IOException exception)
-		{
-			System.out.println("unable to read file");
-		}
-
-	}
-
-	private boolean containsAnnotationToken()
-	{
-		if (currentLine.contains(annotationToken))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	private String parseArguments(String command)
-	{
-		String args = "";
-		String regularExpression = ".*" + annotationToken + "\\s*" + command + "\\s*(.*)";
-		Pattern pattern = Pattern.compile(regularExpression);
-		Matcher matcher = pattern.matcher(currentLine);
-		if (matcher.matches())
-		{
-			args = matcher.group(1);
-		}
-		else
-		{
-			args = "FAIL";
-		}
-		return args;
-	}
 
 	private void createJavaScriptEngine()
 	{
