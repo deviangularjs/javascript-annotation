@@ -8,7 +8,6 @@ public class Engine
 {
 	private ScriptEngine javaScriptEngine;
 	private File originalFile;
-	private File parsedFile;
 
 	/** Instantiates a JavaScript engine and loads common annotation JavaScript variables into the JavaScript engine environment.*/
 	public Engine()
@@ -24,7 +23,6 @@ public class Engine
 			originalFile = new File(filename);
 		try
 		{
-			parsedFile = File.createTempFile("jsa","tmp");
 			javaScriptEngine.put(ScriptEngine.FILENAME, filename.toString());
 			javaScriptEngine.eval(new FileReader(filename));
 			CommandParser commandParser = new CommandParser(originalFile, javaScriptEngine);
@@ -36,9 +34,6 @@ public class Engine
 		catch (FileNotFoundException exception)
 		{
 			System.out.println("file not found!");
-		}
-		catch (IOException exception)
-		{
 		}
 	}
 
