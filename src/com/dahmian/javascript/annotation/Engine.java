@@ -37,7 +37,7 @@ public class Engine
 		}
 		catch (FileNotFoundException exception)
 		{
-			System.out.println("file not found!");
+			Engine.printFileNotFound();
 		}
 	}
 
@@ -46,6 +46,11 @@ public class Engine
 	{
 		System.out.println("JavaScript error: " + exception.getMessage());
 		System.exit(1);
+	}
+
+	static void printFileNotFound()
+	{
+		System.out.println("file not found!");
 	}
 
 
