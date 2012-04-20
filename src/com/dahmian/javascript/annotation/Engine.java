@@ -20,10 +20,11 @@ public class Engine
 	@param filename JavaScript filename represented by a string */
 	public void loadScript(String filename)
 	{
-			scriptFile = new File(filename);
+		scriptFile = new File(filename);
+		putFileNameIntoEngine();
+
 		try
 		{
-			putFileNameIntoEngine();
 			javaScriptEngine.eval(new FileReader(filename));
 			CommandParser commandParser = new CommandParser(scriptFile, javaScriptEngine);
 		}
