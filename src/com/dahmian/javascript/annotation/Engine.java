@@ -7,7 +7,7 @@ import javax.script.*;
 public class Engine
 {
 	private ScriptEngine javaScriptEngine;
-	private File originalFile;
+	private File scriptFile;
 
 	/** Instantiates a JavaScript engine and loads common annotation JavaScript variables into the JavaScript engine environment.*/
 	public Engine()
@@ -18,14 +18,14 @@ public class Engine
 
 	/** loads a JavaScript file into the JavaScript engine and executes the script
 	@param filename JavaScript filename represented by a string */
-	public void loadFile(String filename)
+	public void loadScript(String filename)
 	{
-			originalFile = new File(filename);
+			scriptFile = new File(filename);
 		try
 		{
-			javaScriptEngine.put(ScriptEngine.FILENAME, filename.toString());
+			putFileNameIntoEngine();
 			javaScriptEngine.eval(new FileReader(filename));
-			CommandParser commandParser = new CommandParser(originalFile, javaScriptEngine);
+			CommandParser commandParser = new CommandParser(scriptFile, javaScriptEngine);
 		}
 		catch (ScriptException exception)
 		{
@@ -53,6 +53,11 @@ public class Engine
 
 	private void loadAnnotationJavaScriptFiles()
 	{
-		loadFile("scripts/jsa.js");
+		loadScript("scripts/jsa.js");
+	}
+
+	private void putFileNameIntoEngine()
+	{
+		javaScriptEngine.put(ScriptEngine.FILENAME, scriptFile.getName());
 	}
 }
