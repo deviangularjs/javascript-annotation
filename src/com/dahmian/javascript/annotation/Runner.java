@@ -7,7 +7,7 @@ public class Runner
 	        Engine engine = new Engine();
                 for (String currentArg : args)
                 {
-                        engine.loadFile(currentArg);
+                        engine.loadScript(currentArg);
                 }	
 	}
 }
