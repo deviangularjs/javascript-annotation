@@ -38,7 +38,7 @@ public class Engine
 		}
 		catch (ScriptException exception)
 		{
-			printScriptError(exception);
+			Engine.printScriptError(exception);
 		}
 		catch (FileNotFoundException exception)
 		{
