@@ -18,12 +18,6 @@ public class Engine
 		loadAnnotationJavaScriptFiles();
 	}
 
-	/** @returns JavaScript Engine, allowing other objects to operate in a current JavaScript engine state */
-	public ScriptEngine getEngine()
-	{
-		return javaScriptEngine;
-	}
-
 	/** loads a JavaScript file into the JavaScript engine and executes the script
 	@param filename JavaScript filename represented by a string */
 	public void loadFile(String filename)
@@ -34,7 +28,7 @@ public class Engine
 			parsedFile = File.createTempFile("jsa","tmp");
 			javaScriptEngine.put(ScriptEngine.FILENAME, filename.toString());
 			javaScriptEngine.eval(new FileReader(filename));
-			CommandParser commandParser = new CommandParser(originalFile, getEngine());
+			CommandParser commandParser = new CommandParser(originalFile, javaScriptEngine);
 		}
 		catch (ScriptException exception)
 		{
