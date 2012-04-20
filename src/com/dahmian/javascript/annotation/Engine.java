@@ -38,7 +38,7 @@ public class Engine
 	}
 
 	/** Accepts a ScriptException and prints a user friendly JavaScript error*/
-	static public void printScriptError(ScriptException exception)
+	static void printScriptError(ScriptException exception)
 	{
 		System.out.println("JavaScript error: " + exception.getMessage());
 		System.exit(1);
