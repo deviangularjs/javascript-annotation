@@ -15,6 +15,15 @@ public class Engine
 		loadAnnotationJavaScriptFiles();
 	}
 
+	public Engine(String[] filenames)
+	{
+		this();
+		for (String currentFile : filenames)
+		{
+			loadScript(currentFile);
+		}
+	}
+
 	/** loads a JavaScript file into the JavaScript engine and executes the script
 	@param filename JavaScript filename represented by a string */
 	public void loadScript(String filename)
