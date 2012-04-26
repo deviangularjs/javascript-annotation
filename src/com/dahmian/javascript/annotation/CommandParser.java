@@ -38,11 +38,11 @@ public class CommandParser
 		}
 		catch (FileNotFoundException exception)
 		{
-			Engine.printFileNotFound();
+			Error.printFileNotFound();
 		}
 		catch (IOException exception)
 		{
-			System.out.println("unable to read file");
+			Error.printFileNotReadable();
 		}
 
 	}
