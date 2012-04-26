@@ -6,7 +6,6 @@ import javax.script.*;
 public class CommandParser
 {
 	protected Command[] commandList = {new ExecuteCommand()};
-	protected String annotationToken = "@jsa";
 	private String currentLine = "";
 	private ScriptEngine javaScriptEngine;
 	
