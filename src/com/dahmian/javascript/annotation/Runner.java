@@ -4,10 +4,6 @@ public class Runner
 {
 	public static void main(String[] args)
 	{
-	        Engine engine = new Engine();
-                for (String currentArg : args)
-                {
-                        engine.loadScript(currentArg);
-                }	
+	        Engine engine = new Engine(args);
 	}
 }
