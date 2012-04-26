@@ -28,7 +28,7 @@ public class CommandParser
 			{
 				for (Command command : commandList)
 				{
-					if (containsAnnotationToken() && currentLine.contains(command.getCommand()))
+					if (containsAnnotationToken(currentLine) && currentLine.contains(command.getCommand()))
 					{
 						String args = parseArguments(command.getCommand());
 						command.execute(javaScriptEngine, args);
@@ -49,7 +49,7 @@ public class CommandParser
 
 	}
 
-	private boolean containsAnnotationToken()
+	private boolean containsAnnotationToken(String currentLine)
 	{
 		if (currentLine.contains(annotationToken))
 		{
