@@ -1,7 +1,6 @@
 package com.dahmian.javascript.annotation;
 
 import java.io.*;
-import java.util.regex.*;
 import javax.script.*;
 
 public class CommandParser
@@ -28,9 +27,9 @@ public class CommandParser
 			{
 				for (Command command : commandList)
 				{
-					if (containsAnnotationToken(currentLine) && currentLine.contains(command.getCommand()))
+					if (Annotation.containsAnnotationToken(currentLine) && currentLine.contains(command.getCommand()))
 					{
-						String args = parseArguments(command.getCommand());
+						String args = Annotation.parseArguments(currentLine, command.getCommand());
 						command.execute(javaScriptEngine, args);
 					}
 				}
@@ -49,31 +48,4 @@ public class CommandParser
 
 	}
 
-	private boolean containsAnnotationToken(String currentLine)
-	{
-		if (currentLine.contains(annotationToken))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-	private String parseArguments(String command)
-	{
-		String args = "";
-		String regularExpression = ".*" + annotationToken + "\\s*" + command + "\\s*(.*)";
-		Pattern pattern = Pattern.compile(regularExpression);
-		Matcher matcher = pattern.matcher(currentLine);
-		if (matcher.matches())
-		{
-			args = matcher.group(1);
-		}
-		else
-		{
-			args = "FAIL";
-		}
-		return args;
-	}
 }
