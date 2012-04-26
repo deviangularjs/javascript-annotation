@@ -19,7 +19,7 @@ public abstract class Command
 
 	public abstract void execute(ScriptEngine engine, String annotationCommands);
 
-	public String[] parseArguments(String annotationCommands)
+	static public String[] parseArguments(String annotationCommands)
 	{
 		String regularExpression = "\\w";
 		Pattern pattern = Pattern.compile(regularExpression);
