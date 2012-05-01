@@ -38,6 +38,11 @@ public class JavaScriptFile
 		
 	}
 
+	public void setFile(ArrayList<String> fileArray)
+	{
+		this.fileArray = fileArray;
+	}
+
 	public ArrayList<String> getFile()
 	{
 		return fileArray;
