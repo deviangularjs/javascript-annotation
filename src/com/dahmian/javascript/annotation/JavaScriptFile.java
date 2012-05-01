@@ -5,7 +5,7 @@ import java.util.*;
 
 public class JavaScriptFile
 {
-	private ArrayList<String> fileArray;
+	public ArrayList<String> fileArray = new ArrayList<String>();
 
 	public JavaScriptFile(File file)
 	{
@@ -41,5 +41,22 @@ public class JavaScriptFile
 	public ArrayList<String> getFile()
 	{
 		return fileArray;
+	}
+
+	public void writeFile(String filename)
+	{
+		try
+		{
+			BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
+			for (String currentLine : fileArray)
+			{
+				writer.write(currentLine);
+				writer.newLine();
+			}
+			writer.flush();
+		}
+		catch (IOException exception)
+		{
+		}
 	}
 }
