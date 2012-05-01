@@ -5,7 +5,7 @@ import java.util.*;
 
 public class JavaScriptFile
 {
-	private ArrayList fileArray;
+	private ArrayList<String> fileArray;
 
 	public JavaScriptFile(File file)
 	{
@@ -36,5 +36,10 @@ public class JavaScriptFile
 			Error.printFileNotReadable();
 		}
 		
+	}
+
+	public ArrayList<String> getFile()
+	{
+		return fileArray;
 	}
 }
