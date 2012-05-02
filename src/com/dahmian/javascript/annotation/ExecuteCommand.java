@@ -16,7 +16,7 @@ public class ExecuteCommand extends Command
 		}
 		catch (ScriptException ex)
 		{
-			Engine.printScriptError(ex);
+			Error.printScriptError(ex);
 		}    
 	}	
 }
