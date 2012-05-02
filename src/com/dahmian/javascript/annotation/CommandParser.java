@@ -17,6 +17,7 @@ public class CommandParser
 
 	private void parseScript(File scriptFile)
 	{
+		JavaScriptFile javaScriptFile = new JavaScriptFile(scriptFile);
 		BufferedReader in;
 		try
 		{
