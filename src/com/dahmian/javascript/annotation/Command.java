@@ -33,7 +33,7 @@ public abstract class Command
 
 	protected String removeCommand(String line)
 	{
-		line = line.replaceFirst(this.getCommand(), "");
+		line = line.replaceFirst(this.getCommand() + " ", "");
 		return line;
 	}
 
