@@ -26,4 +26,22 @@ public abstract class Command
 		String[] arguments = pattern.split(annotationCommands);
 		return arguments;
 	}
+
+	protected boolean hasToken(String line)
+	{
+		if (Annotation.containsAnnotationToken(line) && line.contains(this.getCommand()))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	protected String removeCommand(String line)
+	{
+		line = line.replaceFirst(this.getCommand(), "");
+		return line;
+	}
 }
