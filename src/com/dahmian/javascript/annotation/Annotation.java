@@ -4,7 +4,7 @@ import java.util.regex.*;
 
 public class Annotation 
 {
-	static private String annotationToken = "@jsa";
+	static private String annotationToken = "@jsa ";
 
 	static boolean containsAnnotationToken(String currentLine)
 	{
