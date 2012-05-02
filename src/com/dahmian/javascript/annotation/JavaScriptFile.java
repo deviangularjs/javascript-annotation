@@ -5,7 +5,7 @@ import java.util.*;
 
 public class JavaScriptFile
 {
-	public ArrayList<String> fileArray = new ArrayList<String>();
+	private ArrayList<String> fileArray = new ArrayList<String>();
 
 	public JavaScriptFile(File file)
 	{
