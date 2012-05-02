@@ -2,12 +2,14 @@ package com.dahmian.javascript.annotation;
 
 import java.util.*;
 import javax.script.*;
+import java.util.Date;
+import java.io.*;
 
-public class ExecuteCommand extends Command
+public class Load extends Command
 {
-	public ExecuteCommand()
+	public Load()
 	{
-		setCommand("execute");
+		setCommand("load");
 	}
 
 	public JavaScriptFile execute(JavaScriptFile script)
@@ -18,9 +20,8 @@ public class ExecuteCommand extends Command
 		{
 			if (hasToken(currentLine))
 			{
-				currentLine = Annotation.removeAnnotationToken(currentLine);
-				currentLine = removeCommand(currentLine);
-				modifiedScriptArray.add(currentLine);
+				String[] arguments = getArguments(currentLine);
+				modifiedScriptArray.add(loadFile(arguments[0]));
 			}
 			else
 			{
@@ -30,4 +31,10 @@ public class ExecuteCommand extends Command
 		JavaScriptFile newFile = new JavaScriptFile(modifiedScriptArray);
 		return newFile;
 	}	
+
+	private String loadFile(String filename)
+	{
+		JavaScriptFile file = new JavaScriptFile(new File(filename));
+		return file.getString();
+	}
 }

@@ -3,13 +3,12 @@ package com.dahmian.javascript.annotation;
 import java.util.*;
 import javax.script.*;
 import java.util.Date;
-import java.io.*;
 
-public class LoadCommand extends Command
+public class TimeStamp extends Command
 {
-	public LoadCommand()
+	public TimeStamp()
 	{
-		setCommand("load");
+		setCommand("timestamp");
 	}
 
 	public JavaScriptFile execute(JavaScriptFile script)
@@ -20,8 +19,10 @@ public class LoadCommand extends Command
 		{
 			if (hasToken(currentLine))
 			{
-				String[] arguments = getArguments(currentLine);
-				modifiedScriptArray.add(loadFile(arguments[0]));
+				String date = (new Date()).toString();
+				currentLine = Annotation.removeAnnotationToken(currentLine);
+				currentLine = currentLine.replace(this.getCommand(), date);
+				modifiedScriptArray.add(currentLine);
 			}
 			else
 			{
@@ -31,10 +32,4 @@ public class LoadCommand extends Command
 		JavaScriptFile newFile = new JavaScriptFile(modifiedScriptArray);
 		return newFile;
 	}	
-
-	private String loadFile(String filename)
-	{
-		JavaScriptFile file = new JavaScriptFile(new File(filename));
-		return file.getString();
-	}
 }
