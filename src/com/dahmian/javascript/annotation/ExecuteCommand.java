@@ -18,8 +18,7 @@ public class ExecuteCommand extends Command
 		{
 			if (Annotation.containsAnnotationToken(currentLine) && currentLine.contains(this.getCommand()))
 			{
-				currentLine = currentLine.replaceFirst("//", "");
-				currentLine = currentLine.replaceFirst(Annotation.getAnnotationToken(), "");
+				currentLine = Annotation.removeAnnotationToken(currentLine);
 				currentLine = currentLine.replaceFirst(this.getCommand(), "");
 				modifiedScriptArray.add(currentLine);
 			}

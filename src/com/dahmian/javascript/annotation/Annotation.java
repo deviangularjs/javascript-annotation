@@ -39,4 +39,11 @@ public class Annotation
 	{
 		return annotationToken;
 	}
+
+	static String removeAnnotationToken(String line)
+	{
+		line = line.replaceFirst("//", "");
+		line = line.replaceFirst(Annotation.getAnnotationToken(), "");
+		return line;
+	}
 }
