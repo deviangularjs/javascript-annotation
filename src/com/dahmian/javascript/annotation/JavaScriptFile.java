@@ -64,4 +64,15 @@ public class JavaScriptFile
 		{
 		}
 	}
+
+	public String getString()
+	{
+		String fileString = null;
+		String lineSeparator = System.getProperty("line.separator");
+		for (String currentLine : fileArray)
+		{
+			fileString += currentLine + lineSeparator;
+		}
+		return fileString;
+	}
 }
