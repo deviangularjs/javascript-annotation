@@ -16,10 +16,10 @@ public class ExecuteCommand extends Command
 		ArrayList<String> modifiedScriptArray = new ArrayList<String>();
 		for (String currentLine : scriptArray)
 		{
-			if (Annotation.containsAnnotationToken(currentLine) && currentLine.contains(this.getCommand()))
+			if (hasToken(currentLine))
 			{
 				currentLine = Annotation.removeAnnotationToken(currentLine);
-				currentLine = currentLine.replaceFirst(this.getCommand(), "");
+				currentLine = removeCommand(currentLine);
 				modifiedScriptArray.add(currentLine);
 			}
 			else
