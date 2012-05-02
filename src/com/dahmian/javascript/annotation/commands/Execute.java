@@ -2,13 +2,12 @@ package com.dahmian.javascript.annotation;
 
 import java.util.*;
 import javax.script.*;
-import java.util.Date;
 
-public class TimeStampCommand extends Command
+public class Execute extends Command
 {
-	public TimeStampCommand()
+	public Execute()
 	{
-		setCommand("timestamp");
+		setCommand("execute");
 	}
 
 	public JavaScriptFile execute(JavaScriptFile script)
@@ -19,9 +18,8 @@ public class TimeStampCommand extends Command
 		{
 			if (hasToken(currentLine))
 			{
-				String date = (new Date()).toString();
 				currentLine = Annotation.removeAnnotationToken(currentLine);
-				currentLine = currentLine.replace(this.getCommand(), date);
+				currentLine = removeCommand(currentLine);
 				modifiedScriptArray.add(currentLine);
 			}
 			else

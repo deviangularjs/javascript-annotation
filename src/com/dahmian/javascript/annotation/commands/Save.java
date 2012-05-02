@@ -5,9 +5,9 @@ import javax.script.*;
 import java.util.Date;
 import java.io.*;
 
-public class SaveCommand extends Command
+public class Save extends Command
 {
-	public SaveCommand()
+	public Save()
 	{
 		setCommand("save");
 	}
