@@ -36,4 +36,21 @@ public abstract class Command
 		line = line.replaceFirst(this.getCommand(), "");
 		return line;
 	}
+
+	public String[] getArguments(String line)
+	{
+		line = Annotation.removeAnnotationToken(line);
+		line = removeCommand(line);
+		String regularExpression = "\\w";
+		Pattern pattern = Pattern.compile(regularExpression);
+		if (line.matches("\\w"))
+		{
+			return pattern.split(line);
+		}
+		else
+		{
+			String[] arguments = {line};
+			return arguments;
+		}
+	}
 }

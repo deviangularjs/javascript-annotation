@@ -20,7 +20,8 @@ public class SaveCommand extends Command
 		{
 			if (hasToken(currentLine))
 			{
-				writeFile(modifiedScriptArray);
+				String[] arguments = getArguments(currentLine);
+				writeFile(modifiedScriptArray, arguments[0]);
 			}
 			else
 			{
@@ -31,12 +32,12 @@ public class SaveCommand extends Command
 		return newFile;
 	}	
 
-	private void writeFile(ArrayList<String> modifiedScriptArray)
+	private void writeFile(ArrayList<String> modifiedScriptArray, String filename)
 	{
 		BufferedWriter writer = null;
 		try
 		{
-			writer = new BufferedWriter(new FileWriter("test"));
+			writer = new BufferedWriter(new FileWriter(filename));
 			for (String line : modifiedScriptArray)
 			{
 				writer.write(line);
