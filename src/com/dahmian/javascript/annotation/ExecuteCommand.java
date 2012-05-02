@@ -1,4 +1,6 @@
 package com.dahmian.javascript.annotation;
+
+import java.util.*;
 import javax.script.*;
 
 public class ExecuteCommand extends Command
@@ -8,8 +10,25 @@ public class ExecuteCommand extends Command
 		setCommand("execute");
 	}
 
-	public void execute(Engine engine, String annotationCommands)
+	public JavaScriptFile execute(JavaScriptFile script)
 	{
-		engine.eval(annotationCommands);
+		ArrayList<String> scriptArray = script.getFile();
+		ArrayList<String> modifiedScriptArray = new ArrayList<String>();
+		for (String currentLine : scriptArray)
+		{
+			if (Annotation.containsAnnotationToken(currentLine) && currentLine.contains(this.getCommand()))
+			{
+				currentLine = currentLine.replaceFirst("//", "");
+				currentLine = currentLine.replaceFirst(Annotation.getAnnotationToken(), "");
+				currentLine = currentLine.replaceFirst(this.getCommand(), "");
+				modifiedScriptArray.add(currentLine);
+			}
+			else
+			{
+				modifiedScriptArray.add(currentLine);
+			}
+		}
+		JavaScriptFile newFile = new JavaScriptFile(modifiedScriptArray);
+		return newFile;
 	}	
 }

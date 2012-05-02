@@ -18,34 +18,11 @@ public class CommandParser
 	private void parseScript(File scriptFile)
 	{
 		JavaScriptFile javaScriptFile = new JavaScriptFile(scriptFile);
-		BufferedReader in;
-		try
+		for (Command command : commandList)
 		{
-			in = new BufferedReader(new FileReader(scriptFile));
-
-			while ((currentLine = in.readLine()) != null)
-			{
-				for (Command command : commandList)
-				{
-					if (Annotation.containsAnnotationToken(currentLine) && currentLine.contains(command.getCommand()))
-					{
-						String args = Annotation.parseArguments(currentLine, command.getCommand());
-						command.execute(javaScriptEngine, args);
-					}
-				}
-			}
-
-			in.close();
+			javaScriptFile = command.execute(javaScriptFile);
 		}
-		catch (FileNotFoundException exception)
-		{
-			Error.printFileNotFound();
-		}
-		catch (IOException exception)
-		{
-			Error.printFileNotReadable();
-		}
-
+		javaScriptEngine.eval(javaScriptFile.getString());
 	}
 
 }

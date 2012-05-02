@@ -30,7 +30,6 @@ public class Engine
 	{
 		File scriptFile = new File(filename);
 		putFileNameIntoEngine(scriptFile);
-		eval(scriptFile);
 		CommandParser commandParser = new CommandParser(scriptFile, this);
 	}
 
