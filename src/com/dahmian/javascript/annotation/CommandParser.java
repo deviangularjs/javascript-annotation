@@ -7,9 +7,9 @@ public class CommandParser
 {
 	protected Command[] commandList = {new ExecuteCommand()};
 	private String currentLine = "";
-	private ScriptEngine javaScriptEngine;
+	private Engine javaScriptEngine;
 	
-	public CommandParser(File scriptFile, ScriptEngine javaScriptEngine)
+	public CommandParser(File scriptFile, Engine javaScriptEngine)
 	{
 		this.javaScriptEngine = javaScriptEngine;
 		parseScript(scriptFile);

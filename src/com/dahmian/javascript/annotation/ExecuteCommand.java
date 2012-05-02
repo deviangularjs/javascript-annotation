@@ -8,15 +8,8 @@ public class ExecuteCommand extends Command
 		setCommand("execute");
 	}
 
-	public void execute(ScriptEngine engine, String annotationCommands)
+	public void execute(Engine engine, String annotationCommands)
 	{
-		try
-		{
-			engine.eval(annotationCommands);
-		}
-		catch (ScriptException ex)
-		{
-			Error.printScriptError(ex);
-		}    
+		engine.eval(annotationCommands);
 	}	
 }
