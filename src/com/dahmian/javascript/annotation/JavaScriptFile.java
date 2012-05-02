@@ -12,6 +12,11 @@ public class JavaScriptFile
 		setFile(file);
 	}
 
+	public JavaScriptFile(ArrayList<String> file)
+	{
+		setFile(file);
+	}
+
 	public void setFile(File file)
 	{
 		BufferedReader reader;
@@ -67,7 +72,7 @@ public class JavaScriptFile
 
 	public String getString()
 	{
-		String fileString = null;
+		String fileString = new String();
 		String lineSeparator = System.getProperty("line.separator");
 		for (String currentLine : fileArray)
 		{

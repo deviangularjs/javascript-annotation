@@ -34,4 +34,9 @@ public class Annotation
 		}
 		return args;
 	}
+
+	static String getAnnotationToken()
+	{
+		return annotationToken;
+	}
 }
