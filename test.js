@@ -4,3 +4,4 @@ function addTwo(num)
 }
 //@jsa execute print(addTwo(10));
 //@jsa execute print("@jsa timestamp");
+//@jsa save
