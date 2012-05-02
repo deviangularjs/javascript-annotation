@@ -17,7 +17,7 @@ public abstract class Command
 		this.command = command;
 	}
 
-	public abstract void execute(ScriptEngine engine, String annotationCommands);
+	public abstract void execute(Engine engine, String annotationCommands);
 
 	static public String[] parseArguments(String annotationCommands)
 	{

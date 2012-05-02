@@ -30,11 +30,11 @@ public class Engine
 	{
 		File scriptFile = new File(filename);
 		putFileNameIntoEngine(scriptFile);
-		evalScriptFile(scriptFile);
-		CommandParser commandParser = new CommandParser(scriptFile, javaScriptEngine);
+		eval(scriptFile);
+		CommandParser commandParser = new CommandParser(scriptFile, this);
 	}
 
-	private void evalScriptFile(File file)
+	public void eval(File file)
 	{
 		try
 		{
@@ -50,6 +50,17 @@ public class Engine
 		}
 	}
 
+	public void eval(String string)
+	{
+		try
+		{
+			javaScriptEngine.eval(string);
+		}
+		catch (ScriptException exception)
+		{
+			Error.printScriptError(exception);
+		}
+	}
 
 	private void createJavaScriptEngine()
 	{
