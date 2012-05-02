@@ -14,7 +14,7 @@ public abstract class Command
 
 	public void setCommand(String command)
 	{
-		this.command = command;
+		this.command = command + " ";
 	}
 
 	public abstract JavaScriptFile execute(JavaScriptFile script);
