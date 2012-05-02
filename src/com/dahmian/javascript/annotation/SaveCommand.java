@@ -34,24 +34,7 @@ public class SaveCommand extends Command
 
 	private void writeFile(ArrayList<String> modifiedScriptArray, String filename)
 	{
-		BufferedWriter writer = null;
-		try
-		{
-			writer = new BufferedWriter(new FileWriter(filename));
-			for (String line : modifiedScriptArray)
-			{
-				writer.write(line);
-				writer.newLine();
-			}
-			writer.close();
-		}
-		catch (FileNotFoundException exception)
-		{
-			Error.printFileNotFound();
-		}
-		catch (IOException exception)
-		{
-			Error.printFileNotReadable();
-		}
+		JavaScriptFile file = new JavaScriptFile(modifiedScriptArray);
+		file.writeFile(filename);
 	}
 }
