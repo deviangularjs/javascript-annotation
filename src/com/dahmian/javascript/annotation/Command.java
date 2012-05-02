@@ -19,14 +19,6 @@ public abstract class Command
 
 	public abstract JavaScriptFile execute(JavaScriptFile script);
 
-	static public String[] parseArguments(String annotationCommands)
-	{
-		String regularExpression = "\\w";
-		Pattern pattern = Pattern.compile(regularExpression);
-		String[] arguments = pattern.split(annotationCommands);
-		return arguments;
-	}
-
 	protected boolean hasToken(String line)
 	{
 		if (Annotation.containsAnnotationToken(line) && line.contains(this.getCommand()))
