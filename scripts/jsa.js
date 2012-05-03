@@ -8,7 +8,8 @@ jsa.assert.pass = function()
 
 jsa.assert.fail = function()
 {
-	print("fail");
+	print("Failed assertion");
+	java.lang.System.exit(1);
 }
 
 jsa.assert.sameType = function(expression1, expression2)
