@@ -18,7 +18,7 @@
 	</target>
 
 	<target name="run">
-		<java classname="com.dahmian.javascript.annotation.JavaScriptAnnotation" classpath="build">
+		<java classname="com.dahmian.javascript.annotation.Runner" classpath="build" fork="true" failonerror="true">
 			<arg value="test.js"/>
 		</java>
 	</target>
