@@ -5,7 +5,7 @@ import javax.script.*;
 
 public class CommandParser
 {
-	protected Command[] commandList = {new TimeStamp(), new Load(), new Execute(), new Save()};
+	protected Command[] commandList = {new AssertSameType(), new TimeStamp(), new Load(), new Execute(), new Save()};
 	private String currentLine = "";
 	private Engine javaScriptEngine;
 	

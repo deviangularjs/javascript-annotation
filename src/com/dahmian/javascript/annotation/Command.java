@@ -43,14 +43,6 @@ public abstract class Command
 		line = removeCommand(line);
 		String regularExpression = "\\w";
 		Pattern pattern = Pattern.compile(regularExpression);
-		if (line.matches("\\w"))
-		{
-			return pattern.split(line);
-		}
-		else
-		{
-			String[] arguments = {line};
-			return arguments;
-		}
+		return line.split(" ");
 	}
 }
