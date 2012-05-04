@@ -34,7 +34,9 @@ public class Load extends Command
 
 	private String loadFile(String filename)
 	{
-		JavaScriptFile file = new JavaScriptFile(new File(filename));
+		File workdingDirectory = WorkingDirectory.getFile();
+		File absoluteFile = new File(workdingDirectory, filename);
+		JavaScriptFile file = new JavaScriptFile(absoluteFile);
 		return file.getString();
 	}
 }

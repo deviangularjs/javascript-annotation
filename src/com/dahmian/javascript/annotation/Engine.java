@@ -20,6 +20,7 @@ public class Engine
 		this();
 		for (String currentFile : filenames)
 		{
+			WorkingDirectory.setFile(currentFile);
 			loadScript(currentFile);
 		}
 	}
