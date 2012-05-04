@@ -67,9 +67,42 @@ public class Engine
 		javaScriptEngine = scriptEngineManager.getEngineByName("JavaScript");
 	}
 
+
+	private String convertStreamToString(InputStream is)
+	{
+		if (is != null)
+		{
+			Writer writer = null;
+			try
+			{
+				writer = new StringWriter();
+				char[] buffer = new char[1024];
+				Reader reader = new BufferedReader(
+				new InputStreamReader(is, "UTF-8"));
+				int n;
+				while ((n = reader.read(buffer)) != -1)
+				{
+					writer.write(buffer, 0, n);
+				}
+				is.close();
+			}
+			catch (Exception e)
+			{
+			}
+			return writer.toString();
+		}
+		else
+		{        
+			return "";
+		}
+	}
+
+
 	private void loadAnnotationJavaScriptFiles()
 	{
-		loadScript("scripts/jsa.js");
+		InputStream in = getClass().getResourceAsStream("/scripts/jsa.js");
+		String test = convertStreamToString(in);
+		eval(test);
 	}
 
 	private void putFileNameIntoEngine(File scriptFile)
