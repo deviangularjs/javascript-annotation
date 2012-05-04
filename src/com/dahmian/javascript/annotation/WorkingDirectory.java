@@ -19,4 +19,12 @@ public class WorkingDirectory
 	{
 		return directory;
 	}
+
+	public static File getRelativeFile(String relativePath)
+	{
+		
+		File workingDirectory = WorkingDirectory.getFile();
+		File absoluteFile = new File(workingDirectory, relativePath);
+		return absoluteFile;
+	}
 }
