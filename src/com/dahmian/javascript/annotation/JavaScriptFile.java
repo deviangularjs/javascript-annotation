@@ -55,6 +55,11 @@ public class JavaScriptFile
 
 	public void writeFile(String filename)
 	{
+		writeFile(new File(filename));
+	}
+
+	public void writeFile(File filename)
+	{
 		try
 		{
 			BufferedWriter writer = new BufferedWriter(new FileWriter(filename));

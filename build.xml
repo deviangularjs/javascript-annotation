@@ -27,7 +27,7 @@
 		<javadoc packagenames="com.dahmian.javascript.annotation" sourcepath="src" destdir="build/docs/" />
 	</target>
 
-	<target name="jar">
+	<target name="jar" depends="build">
 		<jar destfile="jsa.jar" basedir="build">
 			<manifest>
 				<attribute name="Main-Class" value="com.dahmian.javascript.annotation.Runner"/>
