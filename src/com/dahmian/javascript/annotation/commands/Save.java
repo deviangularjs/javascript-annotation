@@ -34,7 +34,9 @@ public class Save extends Command
 
 	private void writeFile(ArrayList<String> modifiedScriptArray, String filename)
 	{
+		File workdingDirectory = WorkingDirectory.getFile();
+		File absoluteFile = new File(workdingDirectory, filename);
 		JavaScriptFile file = new JavaScriptFile(modifiedScriptArray);
-		file.writeFile(filename);
+		file.writeFile(absoluteFile);
 	}
 }
