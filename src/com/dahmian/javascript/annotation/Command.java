@@ -45,4 +45,29 @@ public abstract class Command
 		Pattern pattern = Pattern.compile(regularExpression);
 		return line.split(" ");
 	}
+
+	public String functionStringBuilder(String functionName, String[] arguments)
+	{
+		String line = functionName + "(";
+		String argumentString = "";
+		if (arguments.length == 0)
+		{
+			argumentString = "";
+		}
+		else if (arguments.length == 1)
+		{
+			argumentString = arguments[0];
+		}
+		else 
+		{
+			for (int i = 0; i < arguments.length - 1; i++)
+			{
+				argumentString += arguments[i];
+				argumentString += ",";
+			}
+			argumentString += arguments[arguments.length - 1];
+		}
+		line += argumentString + ");";
+		return line;
+	}
 }
