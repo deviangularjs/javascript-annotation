@@ -21,18 +21,6 @@ jsa.assert.isFalsy = function(expression1)
 	jsa.assert.similarValue(expression1, false);
 }
 
-jsa.assert.sameValue = function(expression1, expression2)
-{
-	if(expression1 === expression2)
-	{
-		jsa.assert.pass();
-	}
-	else
-	{
-		jsa.assert.fail();
-	}
-}
-
 jsa.assert.isFunction = function(expression1)
 {
 	jsa.assert.sameValue(typeof expression1, "function");
@@ -52,6 +40,25 @@ jsa.assert.isArray = function(expression1)
 {
 	var objectType = Object.prototype.toString.call(expression1);
 	jsa.assert.sameValue(objectType, "[object Array]");
+}
+
+jsa.assert.isInteger = function(expression1)
+{
+	jsa.assert.isNumber(expression1);
+	var roundedNumber = Math.floor(expression1);
+	jsa.assert.sameValue(expression1, roundedNumber);
+}
+
+jsa.assert.sameValue = function(expression1, expression2)
+{
+	if(expression1 === expression2)
+	{
+		jsa.assert.pass();
+	}
+	else
+	{
+		jsa.assert.fail();
+	}
 }
 
 jsa.assert.similarValue = function(expression1, expression2)
