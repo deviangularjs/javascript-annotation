@@ -2,6 +2,7 @@ function addTwo(num)
 {
 	return num +2;
 }
+//@assertEqual 1 1
 //@assertTrue true
 //@assertFalse false
 //@assertNumber 1
