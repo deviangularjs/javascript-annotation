@@ -68,6 +68,67 @@ jsa.assert.isInteger = function(expression1)
 	jsa.assert.sameValue(expression1, roundedNumber);
 }
 
+jsa.assert.equals = function assertEquals(expression1, expression2)
+{
+	if (typeof expression1 !== "object")
+	{
+		assertScalar();
+	}
+	else
+	{
+		assertComposite();
+	}
+
+	function assertScalar()
+	{
+		if (expression1 === expression2)
+		{
+			jsa.assert.pass();
+		}
+		else
+		{
+			jsa.assert.fail();
+		}
+	}
+
+	function assertComposite()
+	{
+		if (typeof expression1 !== typeof expression2)
+		{
+			jsa.assert.fail();
+			return false;
+		}
+
+		if (expression1.length !== expression2.length)
+		{
+			jsa.assert.fail();
+			return false;
+		}
+
+		for (var item in expression1)
+		{
+			if (expression1[item] !== expression2[item])
+			{
+				jsa.assert.fail();
+				return false;
+			}
+		}
+	}
+}
+
+jsa.assert.error = function(expression1)
+{
+	try
+	{
+		expression1();
+	}
+	catch(error)
+	{
+		jsa.assert.pass();
+	}
+	jsa.assert.fail();
+}
+
 jsa.assert.sameValue = function(expression1, expression2)
 {
 	if(expression1 === expression2)
