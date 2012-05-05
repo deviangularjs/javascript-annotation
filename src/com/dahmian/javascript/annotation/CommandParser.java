@@ -8,7 +8,7 @@ public class CommandParser
 	protected Command[] commandList = {
 		new RunFunction("assertTrue", "jsa.assert.isTrue"),
 		new RunFunction("assertFalse", "jsa.assert.isFalse"),
-		new RunFunction("assertEqual", "jsa.assert.equals"),
+		new RunFunction("assertEquals", "jsa.assert.equals"),
 		new RunFunction("assertUndefined", "jsa.assert.isUndefined"),
 		new RunFunction("assertNotUndefined", "jsa.assert.isNotUndefined"),
 		new RunFunction("assertNull", "jsa.assert.isNull"),
