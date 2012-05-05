@@ -93,27 +93,37 @@ jsa.assert.equals = function assertEquals(expression1, expression2)
 
 	function assertComposite()
 	{
-		if (typeof expression1 !== typeof expression2)
+		if (flattenObjet(expression1) === flattenObjet(expression2))
+		{
+			jsa.assert.pass();
+		}
+		else
 		{
 			jsa.assert.fail();
-			return false;
-		}
-
-		if (expression1.length !== expression2.length)
-		{
-			jsa.assert.fail();
-			return false;
-		}
-
-		for (var item in expression1)
-		{
-			if (expression1[item] !== expression2[item])
-			{
-				jsa.assert.fail();
-				return false;
-			}
 		}
 	}
+
+	function flattenObjet(obj)
+	{
+		var stringObj = "";
+		for (var item in obj)
+		{
+			if (typeof obj[item] === "object")
+			{
+				stringObj += item + ": object";
+				stringObj += "(" + flattenObjet(obj[item]) + ")";
+			}
+			else
+			{
+				stringObj +=  item + ": " + typeof obj[item] + " " + obj[item] + "; ";
+			}
+		}
+		return stringObj;
+	}
+
+	expression1 = {one: function() {}, two:{green:"blue"} };
+	expression2 = {one: function() {}, two:{green:"blue"} };
+	assertComposite(expression1, expression2);
 }
 
 jsa.assert.error = function(expression1)
