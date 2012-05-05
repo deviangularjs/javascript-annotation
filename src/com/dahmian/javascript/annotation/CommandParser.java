@@ -5,7 +5,18 @@ import javax.script.*;
 
 public class CommandParser
 {
-	protected Command[] commandList = {new RunFunction("assertSameType", "jsa.assert.sameType"), new TimeStamp(), new Load(), new Execute(), new Save()};
+	protected Command[] commandList = {
+		new RunFunction("assertTrue", "jsa.assert.isTrue"),
+		new RunFunction("assertFalse", "jsa.assert.isFalse"),
+		new RunFunction("assertString", "jsa.assert.isString"),
+		new RunFunction("assertNumber", "jsa.assert.isNumber"),
+		new RunFunction("assertInteger", "jsa.assert.isInteger"),
+		new RunFunction("assertArray", "jsa.assert.isArray"),
+		new RunFunction("assertFunction", "jsa.assert.isFunction"),
+		new TimeStamp(),
+		new Load(),
+		new Execute(),
+		new Save()};
 	private String currentLine = "";
 	private Engine javaScriptEngine;
 	

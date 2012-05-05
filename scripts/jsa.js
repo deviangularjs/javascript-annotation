@@ -44,7 +44,6 @@ jsa.assert.isArray = function(expression1)
 
 jsa.assert.isInteger = function(expression1)
 {
-	jsa.assert.isNumber(expression1);
 	var roundedNumber = Math.floor(expression1);
 	jsa.assert.sameValue(expression1, roundedNumber);
 }
@@ -111,7 +110,7 @@ jsa.assert.printMessage = function(message)
 {
 	if(typeof java !== "undefined")
 	{
-		print(message);
+		print(message + "\n");
 	}
 	else if(typeof console !== "undefined" && console.log)
 	{
