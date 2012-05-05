@@ -3,11 +3,14 @@ package com.dahmian.javascript.annotation;
 import java.util.*;
 import javax.script.*;
 
-public class AssertSameType extends Command
+public class RunFunction extends Command
 {
-	public AssertSameType()
+	private String functionName;
+
+	public RunFunction(String assertToken, String functionName)
 	{
-		setCommand("assertSameType");
+		this.functionName = functionName;
+		setCommand(assertToken);
 	}
 
 	public JavaScriptFile execute(JavaScriptFile script)
@@ -21,7 +24,7 @@ public class AssertSameType extends Command
 				currentLine = Annotation.removeAnnotationToken(currentLine);
 				currentLine = removeCommand(currentLine);
 				String[] arguments = getArguments(currentLine);
-				modifiedScriptArray.add(functionStringBuilder("jsa.assert.sameType", arguments));
+				modifiedScriptArray.add(functionStringBuilder(this.functionName, arguments));
 			}
 			else
 			{

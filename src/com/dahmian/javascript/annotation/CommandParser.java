@@ -5,7 +5,7 @@ import javax.script.*;
 
 public class CommandParser
 {
-	protected Command[] commandList = {new AssertSameType(), new TimeStamp(), new Load(), new Execute(), new Save()};
+	protected Command[] commandList = {new RunFunction("assertSameType", "jsa.assert.sameType"), new TimeStamp(), new Load(), new Execute(), new Save()};
 	private String currentLine = "";
 	private Engine javaScriptEngine;
 	
