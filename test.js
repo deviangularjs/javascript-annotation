@@ -2,8 +2,8 @@ function addTwo(num)
 {
 	return num +2;
 }
-//@assertTrue true true
-//@assertFalse false false
+//@assertTrue true
+//@assertFalse false
 //@assertNumber 1
 //@assertInteger 1
 //@assertString "1"
