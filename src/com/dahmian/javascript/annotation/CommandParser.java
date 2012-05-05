@@ -17,6 +17,7 @@ public class CommandParser
 		new RunFunction("assertInteger", "jsa.assert.isInteger"),
 		new RunFunction("assertArray", "jsa.assert.isArray"),
 		new RunFunction("assertFunction", "jsa.assert.isFunction"),
+		new RunFunction("assertError", "jsa.assert.error"),
 		new TimeStamp(),
 		new Load(),
 		new Execute(),
