@@ -120,10 +120,6 @@ jsa.assert.equals = function assertEquals(expression1, expression2)
 		}
 		return stringObj;
 	}
-
-	expression1 = {one: function() {}, two:{green:"blue"} };
-	expression2 = {one: function() {}, two:{green:"blue"} };
-	assertComposite(expression1, expression2);
 }
 
 jsa.assert.error = function(expression1)
