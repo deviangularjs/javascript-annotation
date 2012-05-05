@@ -21,6 +21,26 @@ jsa.assert.isFalsy = function(expression1)
 	jsa.assert.similarValue(expression1, false);
 }
 
+jsa.assert.isUndefined = function(expression1)
+{
+	jsa.assert.sameValue(typeof expression1, "undefined");
+}
+
+jsa.assert.isNotUndefined = function(expression1)
+{
+	jsa.assert.notSameValue(typeof expression1, "undefined");
+}
+
+jsa.assert.isNull = function(expression1)
+{
+	jsa.assert.sameValue(expression1, null);
+}
+
+jsa.assert.isNotNull = function(expression1)
+{
+	jsa.assert.notSameValue(expression1, null);
+}
+
 jsa.assert.isFunction = function(expression1)
 {
 	jsa.assert.sameValue(typeof expression1, "function");
@@ -51,6 +71,18 @@ jsa.assert.isInteger = function(expression1)
 jsa.assert.sameValue = function(expression1, expression2)
 {
 	if(expression1 === expression2)
+	{
+		jsa.assert.pass();
+	}
+	else
+	{
+		jsa.assert.fail();
+	}
+}
+
+jsa.assert.notSameValue = function(expression1, expression2)
+{
+	if(expression1 !== expression2)
 	{
 		jsa.assert.pass();
 	}

@@ -8,6 +8,10 @@ public class CommandParser
 	protected Command[] commandList = {
 		new RunFunction("assertTrue", "jsa.assert.isTrue"),
 		new RunFunction("assertFalse", "jsa.assert.isFalse"),
+		new RunFunction("assertUndefined", "jsa.assert.isUndefined"),
+		new RunFunction("assertNotUndefined", "jsa.assert.isNotUndefined"),
+		new RunFunction("assertNull", "jsa.assert.isNull"),
+		new RunFunction("assertNotNull", "jsa.assert.isNotNull"),
 		new RunFunction("assertString", "jsa.assert.isString"),
 		new RunFunction("assertNumber", "jsa.assert.isNumber"),
 		new RunFunction("assertInteger", "jsa.assert.isInteger"),
