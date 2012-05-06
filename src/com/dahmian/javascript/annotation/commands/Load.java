@@ -21,7 +21,10 @@ public class Load extends Command
 			if (hasToken(currentLine))
 			{
 				String[] arguments = getArguments(currentLine);
-				modifiedScriptArray.add(loadFile(arguments[0]));
+				for (String currentArgument : arguments)
+				{
+					modifiedScriptArray.add(loadFile(currentArgument));
+				}
 			}
 			else
 			{
