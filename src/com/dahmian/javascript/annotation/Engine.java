@@ -7,6 +7,8 @@ import javax.script.*;
 public class Engine
 {
 	private ScriptEngine javaScriptEngine;
+	private boolean useAssertions = true;
+	private boolean useSave = true;
 
 	/** Instantiates a JavaScript engine and loads common annotation JavaScript variables into the JavaScript engine environment.*/
 	public Engine()
@@ -15,14 +17,14 @@ public class Engine
 		loadAnnotationJavaScriptFiles();
 	}
 
-	public Engine(String[] filenames)
+	public void setUseAssertions(boolean useAssertions)
 	{
-		this();
-		for (String currentFile : filenames)
-		{
-			WorkingDirectory.setFile(currentFile);
-			loadScript(currentFile);
-		}
+		this.useAssertions = useAssertions;
+	}
+
+	public void setUseSave(boolean useSave)
+	{
+		this.useSave = useSave;
 	}
 
 	/** loads a JavaScript file into the JavaScript engine and executes the script
@@ -31,7 +33,19 @@ public class Engine
 	{
 		File scriptFile = new File(filename);
 		putFileNameIntoEngine(scriptFile);
-		CommandParser commandParser = new CommandParser(scriptFile, this);
+		CommandParser commandParser = new CommandParser(this);
+		commandParser.setUseAssertions(useAssertions);
+		commandParser.setUseSave(useSave);
+		commandParser.parseScript(scriptFile);
+	}
+
+	public void loadScript(String[] filenames)
+	{
+		for (String currentFile : filenames)
+		{
+			WorkingDirectory.setFile(currentFile);
+			loadScript(currentFile);
+		}
 	}
 
 	public void eval(File file)
