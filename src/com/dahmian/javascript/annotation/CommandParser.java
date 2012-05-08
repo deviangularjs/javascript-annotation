@@ -9,23 +9,47 @@ public class CommandParser
 	protected ArrayList<Command> commandList = new ArrayList<Command>();
 	private String currentLine = "";
 	private Engine javaScriptEngine;
+	private boolean useAssertions = true;
+	private boolean useSave = true;
 	
-	public CommandParser(File scriptFile, Engine javaScriptEngine)
+	public CommandParser(Engine javaScriptEngine)
 	{
 		this.javaScriptEngine = javaScriptEngine;
-		populateAssertCommands();
-		populateCommands();
-		parseScript(scriptFile);
 	}
 
-	private void parseScript(File scriptFile)
+	public void setUseAssertions(boolean useAssertions)
+	{
+		this.useAssertions = useAssertions;
+	}
+
+	public void setUseSave(boolean useSave)
+	{
+		this.useSave = useSave;
+	}
+
+	public void parseScript(File scriptFile)
 	{
 		JavaScriptFile javaScriptFile = new JavaScriptFile(scriptFile);
+		populateCommands();
+
 		for (Command command : commandList)
 		{
 			javaScriptFile = command.execute(javaScriptFile);
 		}
 		javaScriptEngine.eval(javaScriptFile.getString());
+	}
+
+	private void populateCommands()
+	{
+		populateRegularCommands();
+		if (useAssertions)
+		{
+			populateAssertCommands();
+		}
+		if (useSave)
+		{
+			populateSaveCommand();
+		}
 	}
 
 	private void populateAssertCommands()
@@ -43,13 +67,17 @@ public class CommandParser
 		commandList.add(new RunFunction("assertArray", "jsa.assert.isArray"));
 		commandList.add(new RunFunction("assertFunction", "jsa.assert.isFunction"));
 		commandList.add(new RunFunction("assertError", "jsa.assert.error"));
+		commandList.add(new Execute());
 	}
 
-	private void populateCommands()
+	private void populateRegularCommands()
 	{
 		commandList.add(new TimeStamp());
 		commandList.add(new Load());
-		commandList.add(new Execute());
+	}
+
+	private void populateSaveCommand()
+	{
 		commandList.add(new Save());
 	}
 }
