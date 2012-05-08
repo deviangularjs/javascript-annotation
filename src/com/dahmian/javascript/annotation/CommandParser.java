@@ -42,32 +42,8 @@ public class CommandParser
 	private void populateCommands()
 	{
 		populateRegularCommands();
-		if (useAssertions)
-		{
-			populateAssertCommands();
-		}
-		if (useSave)
-		{
-			populateSaveCommand();
-		}
-	}
-
-	private void populateAssertCommands()
-	{
-		commandList.add(new RunFunction("assertTrue", "jsa.assert.isTrue"));
-		commandList.add(new RunFunction("assertFalse", "jsa.assert.isFalse"));
-		commandList.add(new RunFunction("assertEquals", "jsa.assert.equals"));
-		commandList.add(new RunFunction("assertUndefined", "jsa.assert.isUndefined"));
-		commandList.add(new RunFunction("assertNotUndefined", "jsa.assert.isNotUndefined"));
-		commandList.add(new RunFunction("assertNull", "jsa.assert.isNull"));
-		commandList.add(new RunFunction("assertNotNull", "jsa.assert.isNotNull"));
-		commandList.add(new RunFunction("assertString", "jsa.assert.isString"));
-		commandList.add(new RunFunction("assertNumber", "jsa.assert.isNumber"));
-		commandList.add(new RunFunction("assertInteger", "jsa.assert.isInteger"));
-		commandList.add(new RunFunction("assertArray", "jsa.assert.isArray"));
-		commandList.add(new RunFunction("assertFunction", "jsa.assert.isFunction"));
-		commandList.add(new RunFunction("assertError", "jsa.assert.error"));
-		commandList.add(new Execute());
+		populateAssertCommands();
+		populateSaveCommand();
 	}
 
 	private void populateRegularCommands()
@@ -76,8 +52,32 @@ public class CommandParser
 		commandList.add(new Load());
 	}
 
+	private void populateAssertCommands()
+	{
+		if (useAssertions)
+		{
+			commandList.add(new RunFunction("assertTrue", "jsa.assert.isTrue"));
+			commandList.add(new RunFunction("assertFalse", "jsa.assert.isFalse"));
+			commandList.add(new RunFunction("assertEquals", "jsa.assert.equals"));
+			commandList.add(new RunFunction("assertUndefined", "jsa.assert.isUndefined"));
+			commandList.add(new RunFunction("assertNotUndefined", "jsa.assert.isNotUndefined"));
+			commandList.add(new RunFunction("assertNull", "jsa.assert.isNull"));
+			commandList.add(new RunFunction("assertNotNull", "jsa.assert.isNotNull"));
+			commandList.add(new RunFunction("assertString", "jsa.assert.isString"));
+			commandList.add(new RunFunction("assertNumber", "jsa.assert.isNumber"));
+			commandList.add(new RunFunction("assertInteger", "jsa.assert.isInteger"));
+			commandList.add(new RunFunction("assertArray", "jsa.assert.isArray"));
+			commandList.add(new RunFunction("assertFunction", "jsa.assert.isFunction"));
+			commandList.add(new RunFunction("assertError", "jsa.assert.error"));
+			commandList.add(new Execute());
+		}
+	}
+
 	private void populateSaveCommand()
 	{
-		commandList.add(new Save());
+		if (useSave)
+		{
+			commandList.add(new Save());
+		}
 	}
 }
