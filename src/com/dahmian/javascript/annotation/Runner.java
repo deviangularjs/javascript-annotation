@@ -20,7 +20,7 @@ public class Runner
 		}
 		for (String currentArgument : args)
 		{
-			if (!currentArgument.matches("-.[a-zA-Z]"))
+			if (!currentArgument.matches("-[a-zA-Z]*"))
 			{
 				engine.loadScript(currentArgument);
 			}
