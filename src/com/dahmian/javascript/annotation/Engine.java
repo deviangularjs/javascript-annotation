@@ -17,12 +17,24 @@ public class Engine
 		loadAnnotationJavaScriptFiles();
 	}
 
-	public void setUseAssertions(boolean useAssertions)
+	public void disableAssertions()
+	{
+		setUseSave(true);
+		setUseAssertions(false);
+	}
+
+	public void enableAssertions()
+	{
+		setUseAssertions(true);
+		setUseSave(false);
+	}
+
+	private void setUseAssertions(boolean useAssertions)
 	{
 		this.useAssertions = useAssertions;
 	}
 
-	public void setUseSave(boolean useSave)
+	private void setUseSave(boolean useSave)
 	{
 		this.useSave = useSave;
 	}

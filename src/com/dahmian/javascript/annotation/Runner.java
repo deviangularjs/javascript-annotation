@@ -8,14 +8,12 @@ public class Runner
 	{
 	        Engine engine = new Engine();
 
-		engine.setUseSave(true);
-		engine.setUseAssertions(false);
+		engine.disableAssertions();
 		for (String currentArgument : args)
 		{
 			if (currentArgument.matches("-ea") || currentArgument.matches("-enableassertions"))
 			{
-				engine.setUseAssertions(true);
-				engine.setUseSave(false);
+				engine.enableAssertions();
 			}
 		}
 		for (String currentArgument : args)
@@ -26,4 +24,5 @@ public class Runner
 			}
 		}
 	}
+
 }
