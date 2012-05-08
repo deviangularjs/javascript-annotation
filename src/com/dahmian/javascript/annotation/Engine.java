@@ -17,26 +17,18 @@ public class Engine
 		loadAnnotationJavaScriptFiles();
 	}
 
+	/** Disables assertion commands, as a side effect this enables the save command as these two sets of commands are generally mutually exclusive*/
 	public void disableAssertions()
 	{
 		setUseSave(true);
 		setUseAssertions(false);
 	}
 
+	/** Enables assertsion commands. As a side effect, this disables the save command, as these two sets of commands are generally mutually exclusive*/
 	public void enableAssertions()
 	{
 		setUseAssertions(true);
 		setUseSave(false);
-	}
-
-	private void setUseAssertions(boolean useAssertions)
-	{
-		this.useAssertions = useAssertions;
-	}
-
-	private void setUseSave(boolean useSave)
-	{
-		this.useSave = useSave;
 	}
 
 	/** loads a JavaScript file into the JavaScript engine and executes the script
@@ -52,6 +44,7 @@ public class Engine
 		commandParser.parseScript(scriptFile);
 	}
 
+	/** loads an array of filenames into the engine */
 	public void loadScript(String[] filenames)
 	{
 		for (String currentFile : filenames)
@@ -135,5 +128,15 @@ public class Engine
 	private void putFileNameIntoEngine(File scriptFile)
 	{
 		javaScriptEngine.put(ScriptEngine.FILENAME, scriptFile.getName());
+	}
+
+	private void setUseAssertions(boolean useAssertions)
+	{
+		this.useAssertions = useAssertions;
+	}
+
+	private void setUseSave(boolean useSave)
+	{
+		this.useSave = useSave;
 	}
 }
