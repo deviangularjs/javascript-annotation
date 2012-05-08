@@ -1,34 +1,20 @@
 package com.dahmian.javascript.annotation;
 
+import java.util.*;
 import java.io.*;
 import javax.script.*;
 
 public class CommandParser
 {
-	protected Command[] commandList = {
-		new RunFunction("assertTrue", "jsa.assert.isTrue"),
-		new RunFunction("assertFalse", "jsa.assert.isFalse"),
-		new RunFunction("assertEquals", "jsa.assert.equals"),
-		new RunFunction("assertUndefined", "jsa.assert.isUndefined"),
-		new RunFunction("assertNotUndefined", "jsa.assert.isNotUndefined"),
-		new RunFunction("assertNull", "jsa.assert.isNull"),
-		new RunFunction("assertNotNull", "jsa.assert.isNotNull"),
-		new RunFunction("assertString", "jsa.assert.isString"),
-		new RunFunction("assertNumber", "jsa.assert.isNumber"),
-		new RunFunction("assertInteger", "jsa.assert.isInteger"),
-		new RunFunction("assertArray", "jsa.assert.isArray"),
-		new RunFunction("assertFunction", "jsa.assert.isFunction"),
-		new RunFunction("assertError", "jsa.assert.error"),
-		new TimeStamp(),
-		new Load(),
-		new Execute(),
-		new Save()};
+	protected ArrayList<Command> commandList = new ArrayList<Command>();
 	private String currentLine = "";
 	private Engine javaScriptEngine;
 	
 	public CommandParser(File scriptFile, Engine javaScriptEngine)
 	{
 		this.javaScriptEngine = javaScriptEngine;
+		populateAssertCommands();
+		populateCommands();
 		parseScript(scriptFile);
 	}
 
@@ -42,4 +28,28 @@ public class CommandParser
 		javaScriptEngine.eval(javaScriptFile.getString());
 	}
 
+	private void populateAssertCommands()
+	{
+		commandList.add(new RunFunction("assertTrue", "jsa.assert.isTrue"));
+		commandList.add(new RunFunction("assertFalse", "jsa.assert.isFalse"));
+		commandList.add(new RunFunction("assertEquals", "jsa.assert.equals"));
+		commandList.add(new RunFunction("assertUndefined", "jsa.assert.isUndefined"));
+		commandList.add(new RunFunction("assertNotUndefined", "jsa.assert.isNotUndefined"));
+		commandList.add(new RunFunction("assertNull", "jsa.assert.isNull"));
+		commandList.add(new RunFunction("assertNotNull", "jsa.assert.isNotNull"));
+		commandList.add(new RunFunction("assertString", "jsa.assert.isString"));
+		commandList.add(new RunFunction("assertNumber", "jsa.assert.isNumber"));
+		commandList.add(new RunFunction("assertInteger", "jsa.assert.isInteger"));
+		commandList.add(new RunFunction("assertArray", "jsa.assert.isArray"));
+		commandList.add(new RunFunction("assertFunction", "jsa.assert.isFunction"));
+		commandList.add(new RunFunction("assertError", "jsa.assert.error"));
+	}
+
+	private void populateCommands()
+	{
+		commandList.add(new TimeStamp());
+		commandList.add(new Load());
+		commandList.add(new Execute());
+		commandList.add(new Save());
+	}
 }
