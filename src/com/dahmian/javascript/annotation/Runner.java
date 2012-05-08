@@ -12,7 +12,7 @@ public class Runner
 		engine.setUseAssertions(false);
 		for (String currentArgument : args)
 		{
-			if (currentArgument.matches("-ea"))
+			if (currentArgument.matches("-ea") || currentArgument.matches("-enableassertions"))
 			{
 				engine.setUseAssertions(true);
 				engine.setUseSave(false);
