@@ -33,6 +33,7 @@ public class Engine
 	{
 		File scriptFile = new File(filename);
 		putFileNameIntoEngine(scriptFile);
+		WorkingDirectory.setFile(filename);
 		CommandParser commandParser = new CommandParser(this);
 		commandParser.setUseAssertions(useAssertions);
 		commandParser.setUseSave(useSave);
@@ -43,7 +44,6 @@ public class Engine
 	{
 		for (String currentFile : filenames)
 		{
-			WorkingDirectory.setFile(currentFile);
 			loadScript(currentFile);
 		}
 	}
