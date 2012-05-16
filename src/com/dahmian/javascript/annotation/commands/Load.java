@@ -23,7 +23,8 @@ public class Load extends Command
 				String[] arguments = getArguments(currentLine);
 				for (String currentArgument : arguments)
 				{
-					modifiedScriptArray.add(loadFile(currentArgument));
+					String file = loadFileToString(currentArgument);
+					modifiedScriptArray.add(file);
 				}
 			}
 			else
@@ -35,7 +36,7 @@ public class Load extends Command
 		return newFile;
 	}	
 
-	private String loadFile(String filename)
+	private String loadFileToString(String filename)
 	{
 		File absoluteFile = WorkingDirectory.getRelativeFile(filename);
 		JavaScriptFile file = new JavaScriptFile(absoluteFile);
