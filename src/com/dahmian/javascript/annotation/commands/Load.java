@@ -20,12 +20,7 @@ public class Load extends Command
 		{
 			if (hasToken(currentLine))
 			{
-				String[] arguments = getArguments(currentLine);
-				for (String currentArgument : arguments)
-				{
-					String file = loadFileToString(currentArgument);
-					modifiedScriptArray.add(file);
-				}
+				loadFiles(modifiedScriptArray, currentLine);
 			}
 			else
 			{
@@ -41,5 +36,15 @@ public class Load extends Command
 		File absoluteFile = WorkingDirectory.getRelativeFile(filename);
 		JavaScriptFile file = new JavaScriptFile(absoluteFile);
 		return file.getString();
+	}
+
+	private void loadFiles(ArrayList script, String currentLine)
+	{
+		String[] arguments = getArguments(currentLine);
+		for (String currentArgument : arguments)
+		{
+			String file = loadFileToString(currentArgument);
+			script.add(file);
+		}
 	}
 }
