@@ -55,7 +55,7 @@ public class Load extends Command
 
 	private boolean hasUrl(String currentLine)
 	{
-		if (currentLine.contains("http"))
+		if (currentLine.contains("http") && currentLine.contains(":") && currentLine.contains("/"))
 		{
 			return true;
 		}
