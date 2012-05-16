@@ -10,5 +10,9 @@ function addTwo(num)
 //@assertString "1"
 //@assertFunction function(){}
 //@assertArray []
+
 //@load test2.js
+//@load http://www.dahmian.com/invalid
+//@load http://www.dahmian.com/example.js
+
 //@save exampleSavedOutput.js
