@@ -83,7 +83,9 @@ public class Load extends Command
 		}
 		catch (IOException exception)
 		{
-			return "//connection to '" + urlString +"'" + " failed";
+			String javaScriptError = "throw ";
+			String errorMessage = "connection to " + urlString + " failed";
+			return javaScriptError + "'" + errorMessage + "'";
 		}
 	}
 
