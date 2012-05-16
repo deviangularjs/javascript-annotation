@@ -1,1 +1,1 @@
-//loaded from a different file!
+//loaded from a local file, test2.js

@@ -4,6 +4,7 @@ import java.util.*;
 import javax.script.*;
 import java.util.Date;
 import java.io.*;
+import java.net.*;
 
 public class Load extends Command
 {
@@ -18,9 +19,13 @@ public class Load extends Command
 		ArrayList<String> modifiedScriptArray = new ArrayList<String>();
 		for (String currentLine : scriptArray)
 		{
-			if (hasToken(currentLine))
+			if (hasToken(currentLine) && !hasUrl(currentLine))
 			{
 				loadFiles(modifiedScriptArray, currentLine);
+			}
+			else if (hasToken(currentLine) && hasUrl(currentLine))
+			{
+				loadFileFromUrl(modifiedScriptArray, currentLine);
 			}
 			else
 			{
@@ -31,13 +36,6 @@ public class Load extends Command
 		return newFile;
 	}	
 
-	private String loadFileToString(String filename)
-	{
-		File absoluteFile = WorkingDirectory.getRelativeFile(filename);
-		JavaScriptFile file = new JavaScriptFile(absoluteFile);
-		return file.getString();
-	}
-
 	private void loadFiles(ArrayList script, String currentLine)
 	{
 		String[] arguments = getArguments(currentLine);
@@ -45,6 +43,59 @@ public class Load extends Command
 		{
 			String file = loadFileToString(currentArgument);
 			script.add(file);
+		}
+	}
+
+	private String loadFileToString(String filename)
+	{
+		File absoluteFile = WorkingDirectory.getRelativeFile(filename);
+		JavaScriptFile file = new JavaScriptFile(absoluteFile);
+		return file.getString();
+	}
+
+	private boolean hasUrl(String currentLine)
+	{
+		if (currentLine.contains("http"))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	private void loadFileFromUrl(ArrayList script, String currentLine)
+	{
+		String[] arguments = getArguments(currentLine);
+		String urlString = arguments[0];
+		String responseBody = loadUrl(urlString);
+		script.add(responseBody);
+	}
+
+	private String loadUrl(String urlString)
+	{
+		try
+		{
+			InputStream response = new URL(urlString).openStream();
+			String responseBody = convertStreamToString(response);
+			return responseBody;
+		}
+		catch (IOException exception)
+		{
+			return "//connection to '" + urlString +"'" + " failed";
+		}
+	}
+
+	private String convertStreamToString(java.io.InputStream is)
+	{
+		try
+		{
+			return new java.util.Scanner(is).useDelimiter("\\A").next();
+		}
+		catch (java.util.NoSuchElementException e)
+		{
+			return "";
 		}
 	}
 }
