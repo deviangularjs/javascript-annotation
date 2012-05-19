@@ -36,7 +36,10 @@ public class CommandParser
 		{
 			javaScriptFile = command.execute(javaScriptFile);
 		}
-		javaScriptEngine.eval(javaScriptFile.getString());
+		if (useAssertions)
+		{
+			javaScriptEngine.eval(javaScriptFile.getString());
+		}
 	}
 
 	private void populateCommands()
